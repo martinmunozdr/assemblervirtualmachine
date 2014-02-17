@@ -1,0 +1,85 @@
+BSA pedir_nombre
+BSA leer_nombre
+BSA decir_hola
+BSA escribir_nombre
+HLT
+
+pedir_nombre:
+LDA dir_dato_inicial
+STA dir_esc_inicial
+LDA dir_dato_final
+STA dir_esc_final
+BSA escribir
+BUN pedir_nombre I
+
+leer_nombre:
+repetir: CLA
+INP
+STA ptr_nombre I
+ISZ ptr_nombre
+ADD negativo_de_enter
+SZA
+BUN repetir
+BUN leer_nombre I
+
+decir_hola:
+LDA dir_dato_inicial2
+STA dir_esc_inicial
+LDA dir_dato_final2
+STA dir_esc_final
+BSA escribir
+BUN decir_hola I
+
+escribir_nombre:
+LDA origen_nombre
+STA dir_esc_inicial
+LDA ptr_nombre
+STA dir_esc_final
+BSA escribir
+BUN escribir_nombre I
+
+escribir:
+repetir_esc: LDA dir_esc_inicial I
+OUT
+ISZ dir_esc_inicial
+LDA dir_esc_final
+INC
+CMA
+ADD dir_esc_inicial
+SZA
+BUN repetir_esc
+BUN escribir I
+
+origen_nombre: datos
+ptr_nombre: datos
+negativo_de_enter: -10
+
+ORG 200
+texto1: TXT 'S'
+TXT 'u'
+TXT ' '
+TXT 'n'
+TXT 'o'
+TXT 'm'
+TXT 'b'
+TXT 'r'
+TXT 'e'
+fin_texto1:TXT ' '
+
+ORG 300
+texto2:TXT 'H'
+TXT 'o'
+TXT 'l'
+TXT 'a'
+fin_texto2:TXT ' '
+
+dir_dato_inicial: 200
+dir_dato_final: fin_texto1
+
+dir_dato_inicial2: 300
+dir_dato_final2: fin_texto2
+
+dir_esc_inicial:
+dir_esc_final:
+
+datos:

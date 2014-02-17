@@ -1,0 +1,27 @@
+BUN codigo
+TXT 'H'
+TXT 'O'
+TXT 'L'
+TXT 'A'
+TXT ' '
+TXT 'M'
+TXT 'U'
+TXT 'N'
+TXT 'D'
+TXT 'O'
+TXT '\n'
+dir_dato_inicial: 1
+cantidad_datos: 11
+dir_dato_final: 0 ; Se asignara por programa
+codigo: LDA dir_dato_inicial
+ADD cantidad_datos
+STA dir_dato_final
+repetir: LDA dir_dato_inicial I
+OUT
+ISZ dir_dato_inicial
+LDA dir_dato_final
+CMA
+ADD dir_dato_inicial
+SZA
+BUN repetir
+HLT
